@@ -3,7 +3,7 @@ import org.apache.spark.mllib.regression.LabeledPoint
 import org.apache.spark.mllib.linalg.Vectors
 import org.apache.spark.mllib.tree.DecisionTree
 
-object Chapter0902 {
+object MLlib02 {
   //
   def getCurrentDirectory = new java.io.File( "." ).getCanonicalPath
   //
@@ -66,7 +66,7 @@ object Chapter0902 {
         5, // Maxdepth
         32) //maxBins
     //
-    println(mdlTree.depth)
+    //println(mdlTree.depth)
     println(mdlTree)
     //
     // Let us predict on the data set and see how well it works

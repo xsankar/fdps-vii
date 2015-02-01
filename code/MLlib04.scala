@@ -3,10 +3,9 @@ import org.apache.spark.SparkContext._ // for implicit conversations
 import org.apache.spark.mllib.recommendation.Rating
 import org.apache.spark.mllib.recommendation.ALS
 
-object Chapter0904 {
+object MLlib04 {
   
   def parseRating1(line : String) : (Int,Int,Double,Int) = {
-    //println(x)
     val x = line.split("::")
     val userId = x(0).toInt
     val movieId = x(1).toInt
@@ -40,9 +39,8 @@ object Chapter0904 {
     val numRatings = ratingsRDD.count()
     val numUsers = ratingsRDD.map(r => r._1).distinct().count()
     val numMovies = ratingsRDD.map(r => r._2).distinct().count()
-    println("Got " + "%d".format(numRatings) +
-        " ratings from "+ "%d".format(numUsers) +" users on "+
-        "%d".format(numMovies) + " movies.")
+    println("Got %d ratings from %d users on %d movies.".
+         format(numRatings, numUsers, numMovies))
     //
     // Split dataset into training, validation & test
     // We can use random. But here we will use the last digit of the time stamp
@@ -85,7 +83,7 @@ object Chapter0904 {
     // Then we can figure out how good our recommendations are
     // Tip:
     //   Need to import org.apache.spark.SparkContext._ 
-    //   Then MappedRDD would be converted implicitely to PairRDD
+    //   Then MappedRDD would be converted implicitly to PairRDD
     //
     val ratingsAndPreds = validationPairRDD.join(predictions) 
     println(ratingsAndPreds.count())
@@ -95,7 +93,9 @@ object Chapter0904 {
       math.pow((r._2._1 - r._2._2),2)
     }).reduce(_+_) / ratingsAndPreds.count()
     val rmse = math.sqrt(mse)
-    println("MSE = %2.5f".format(mse) + " RMSE = %2.5f".format(rmse))
+    println("*** Model Performance Metrics ***")
+    println("MSE = %2.5f".format(mse))
+    println("RMSE = %2.5f".format(rmse))
     println("** Done **")
   }
 }

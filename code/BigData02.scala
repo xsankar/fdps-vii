@@ -10,7 +10,7 @@ import org.apache.hadoop.hbase.client.Put
 import org.apache.hadoop.mapred.JobConf
 import org.apache.spark.rdd.PairRDDFunctions
 
-object Chapter0802 {
+object BigData02 {
 	def main(args: Array[String]): Unit = {
 			val sc = new SparkContext("local","Chapter 8")
 			println(s"Running Spark Version ${sc.version}")

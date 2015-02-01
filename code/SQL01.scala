@@ -2,7 +2,7 @@ import org.apache.spark.SparkContext
 import org.apache.spark.SparkContext._ // for implicit conversations
 import org.apache.spark.sql._
 
-object Chapter0702 {
+object SQL01 {
   // register case class external to main
   case class Employee(EmployeeID : Int, 
     LastName : String, FirstName : String, Title : String,
@@ -18,7 +18,7 @@ object Chapter0702 {
     import sqlContext.createSchemaRDD // to implicitly convert an RDD to a SchemaRDD.
     import sqlContext._
     //
-    val employeeFile = sc.textFile("/Users/ksankar/fdps-vii/NW-Employees-NoHdr.csv")
+    val employeeFile = sc.textFile("/Users/ksankar/fdps-vii/data/NW-Employees-NoHdr.csv")
     println("Employee File has %d Lines.".format(employeeFile.count()))
     val employees = employeeFile.map(_.split(",")).
       map(e => Employee( e(0).trim.toInt,

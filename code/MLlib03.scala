@@ -2,7 +2,7 @@ import org.apache.spark.SparkContext
 import org.apache.spark.mllib.linalg.{Vector,Vectors}
 import org.apache.spark.mllib.clustering.KMeans
 
-object Chapter0903 {
+object MLlib03 {
   def parsePoints(inpLine : String) : Vector = {
     val values = inpLine.split(',')
     val x = values(0).toInt
